@@ -1,63 +1,30 @@
-#include <iostream>>
-#include <algorithm>
+#include <iostream>
 #include <vector>
-#include <set>
+#include <algorithm>
 
 using namespace std;
 
-#define Point pair<int,int> 
-#define Y frist
-#define value second
+int main() {
 
-struct bar {
-	int x, yl, yh;
+	int N;
+	scanf("%d", &N);
 
-	bool operator < (const bar& _bar) const {
-		return x < _bar.x;
+	vector<int> A(N), dp(N);
+	for (int i = 0; i < N; ++i) {
+		scanf("%d", &A[i]);
 	}
-};
 
-int main(){
+	for (int i = 0; i < N; ++i) {
+		dp[i] = 1;
+		for (int j = 0; j < i; ++j) {
+			if (A[j] < A[i] && dp[i] < dp[j] + 1){
+				dp[i] = dp[j] + 1;
+				//dp[i] = max(dp[i], dp[j] + 1);
+			}
+		}
+	}
 
-	//int N, st_y, end_x;
-	//scanf("%d %d %d", &N, &st_y, &end_x);
-
-	//vector<bar> barrier(N);
-	//for (int i = 0; i < N; ++i) {
-	//	scanf("%d %d %d", &barrier[i].x, &barrier[i].yl, &barrier[i].yh);
-	//}
-	//
-	//sort(barrier.begin(), barrier.end());
-
-	////first : y, second : value
-	//set<pair<int, int>> data;
-	//data.insert(Point(st_y, 0));
-
-	//for (int i = 0; i < N; ++i) {
-	//	Point im;
-	//	int lmin = (int)1e9, rmin = (int)1e9;
-
-	//	Point sim = Point(barrier[i].yl, 0);
-	//	auto it = data.lower_bound(sim);
-	//	if (it == data.end()) continue;
-
-	//	vector<int> v;
-	//	for (; it != data.end(); ++it) {
-	//		im = *it;
-	//		if (im.first > barrier[i].yh) break;
-	//		v.push_back(im.second);
-
-	//		if (im.second < barrier[i].yh) {
-	//			lmin = min(lmin, im.second);
-	//			data.insert(sim);
-	//		}
-
-	//		if()
-	//	}
-
-	//}
-
-
-
-
+	int ans = *max_element(dp.begin(), dp.end());
+	printf("%d\n", ans);
+	
 }
