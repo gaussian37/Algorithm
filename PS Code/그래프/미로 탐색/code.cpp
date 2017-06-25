@@ -39,19 +39,16 @@ int main() {
 		int x = here.second;
 
 		for (int i = 0; i < 4; ++i) {
-			for (int j = 0; j < 4; ++j) {
-				int ny = y + dy[i];
-				int nx = x + dx[i];
+			int ny = y + dy[i];
+			int nx = x + dx[i];
 
-				if (!visited[ny][nx] && A[ny][nx] == 1) {
-					visited[ny][nx] = true;
-					q.push(ii(ny, nx));
-					dist[ny][nx] = dist[y][x] + 1;
-				}
+			if (!visited[ny][nx] && A[ny][nx] == 1) {
+				visited[ny][nx] = true;
+				q.push(ii(ny, nx));
+				dist[ny][nx] = dist[y][x] + 1;
 			}
 		}
 	}
-
 	printf("%d\n", dist[N][M]);
 
 }
