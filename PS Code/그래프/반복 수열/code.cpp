@@ -14,8 +14,6 @@ int N, M, V;
 vi visited;
 vi a;
 
-#include <iostream>
-using namespace std;
 int pow(int x, int p) {
 	int ans = 1;
 	for (int i = 0; i<p; i++) {
