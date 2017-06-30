@@ -22,6 +22,7 @@ bool check(ll x) {
 	}
 	return cnt >= N;
 }
+
 int main() {
 
 	scanf("%d%d", &K, &N);
