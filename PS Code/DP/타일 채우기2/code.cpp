@@ -13,50 +13,39 @@ typedef vector<vl> vll;
 typedef pair<int, int> ii;
 
 int N;
-vii dp;
-int solve(int i, int j) {
-	if (i == 0 && j == 7) return 1;
-	if (i == 0) return 0;
+vii w, dp;
 
-	if (dp[i][j] >= 0) return dp[i][j];
-
-	dp[i][j] = 0;
-	if (j == 0) dp[i][j] += solve(i - 1, 7);
-	if (j == 1) dp[i][j] += solve(i - 1, 6);
-	if (j == 2) dp[i][j] += solve(i - 1, 5);
-	if (j == 3) dp[i][j] += solve(i - 1, 4) + solve(i - 1, 7);
-	if (j == 4) dp[i][j] += solve(i - 1, 3);
-	if (j == 5) dp[i][j] += solve(i - 1, 2);
-	if (j == 6) dp[i][j] += solve(i - 1, 1) + solve(i - 1, 7);
-	if (j == 7)	dp[i][j] += solve(i - 1, 0) + solve(i - 1, 3) + solve(i - 1, 6);
-
-	return dp[i][j];
-}
 int main() {
-	
-	scanf("%d", &N);
-	
 
-#if 0
-	dp = vii(N + 5, vi(8));
-	dp[0][7] = 1;
-	for (int i = 1; i <= N; ++i) {
-		dp[i][0] = dp[i - 1][7];
-		dp[i][1] = dp[i - 1][6];
-		dp[i][2] = dp[i - 1][5];
-		dp[i][3] = dp[i - 1][4] + dp[i - 1][7];
-		dp[i][4] = dp[i - 1][3];
-		dp[i][5] = dp[i - 1][2];
-		dp[i][6] = dp[i - 1][1] + dp[i - 1][7];
-		dp[i][7] = dp[i - 1][0] + dp[i - 1][3] + dp[i - 1][6];
+	scanf("%d", &N);
+	w = vii(N + 5, vi(N + 5));
+	dp = vii(N + 5, vi(N + 5, 1e9));
+
+	puts("1");
+	for (int i = 0; i < N; ++i) {
+		for (int j = 0; j < N; ++j) {
+			scanf("%d", &w[i][j]);
+			
+		}
 	}
 
-	printf("%d\n", dp[N][7]);
+	dp[(1 << 0)][0] = 0;
+	for (int s = 0; i < (1 << N); ++s) {
+		for (int i = 1; j < N; ++i) {
+			if (s & (1 << i)) {
+				for (int j = 0; j < N; ++j) {
+					if (i != j && (s &(1 << j) && w[j][i])) {
+						dp[s][j] = min(dp[s][j], dp[s - (1 << i)][j] + w[j][i]);
+					}
+				}
+			}
+		}
+	}
 
-#else
-	dp = vii(N + 5, vi(8, -1));
-	printf("%d\n", solve(N, 7));
+	int ans = 1e9;
+	for (int i = 0; i < N; ++i) {
+		ans = min(ans, dp[(1 << N) - 1][i] + A[i][1]);
+	}
+	printf("%d\n", ans);
 
-#endif
-	return 0;
 }
