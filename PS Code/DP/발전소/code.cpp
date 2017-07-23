@@ -26,14 +26,13 @@ int solve(int i) {
 	dp[i] = 1e9;
 	for (int j = 0; j < N; ++j) {
 		for (int k = 0; k < N; ++k) {
-			if (j != k && (i & (1 << j))!=0 && (i & (1 << k))!=0 && solve((i&~(1<<k)) != -1) {
+			if (j != k && (i & (1 << j))!=0 && (i & (1 << k))!=0) {
 				dp[i] = min(dp[i], solve(i&~(1 << k)) + A[j][k]);
 			}
 		}
 	}
 	return dp[i];
 }
-
 
 int main() {
 
@@ -58,22 +57,23 @@ int main() {
 		
 	scanf("%d", &P);
 
-	//dp[start] = 0;
-	//for (int i = 0; i < (1 << N); ++i) {
-	//	for (int j = 0; j < N; ++j) {
-	//		for (int k = 0; k < N; ++k) {
-	//			
-	//			if (j != k && (i & (1 << j))!=0 && (i & (1 << k))!=0) {
-	//				dp[i] = min(dp[i], dp[i&~(1 << k)] + A[j][k]);
-	//			}
-	//			
-	//		}
-	//	}
-	//}
+#if 0
+	dp = vi(1 << N, 1e9);
+	dp[start] = 0;
+	for (int i = 0; i < (1 << N); ++i) {
+		for (int j = 0; j < N; ++j) {
+			for (int k = 0; k < N; ++k) {
+				if (j != k && (i & (1 << j))!=0 && (i & (1 << k))!=0) {
+					dp[i] = min(dp[i], dp[i&~(1 << k)] + A[j][k]);
+				}
+				
+			}
+		}
+	}
 	
 	int ans = 1e9;
 	for (int i = 0; i < (1 << N); ++i) {
-		if (solve(i) >= 1e9) continue;
+		if (dp[i] == 1e9) continue;
 		int cnt = 0;
 		for (int j = 0; j < N; ++j) {
 			if ((i & (1 << j)) != 0) {
@@ -85,6 +85,25 @@ int main() {
 			ans = min(ans, dp[i]);
 		}
 	}
+
+#else
+	dp = vi(1 << N, -1);
+	int ans = 1e9;
+	for (int i = 0; i < (1 << N); ++i) {
+		if (solve(i) == 1e9) continue;
+		int cnt = 0;
+		for (int j = 0; j < N; ++j) {
+			if ((i & (1 << j)) != 0) {
+				cnt++;
+			}
+		}
+
+		if (cnt >= P) {
+			ans = min(ans, solve(i));
+		}
+	}
+
+#endif
 
 	if (ans == 1e9) ans = -1;
 	printf("%d\n", ans);
