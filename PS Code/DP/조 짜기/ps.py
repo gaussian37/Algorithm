@@ -1,4 +1,5 @@
-
+import sys
+sys.setrecursionlimit(1000000)
 def solve(i):    
     if(i == 0):
         return 0
