@@ -1,57 +1,62 @@
 #include <iostream>
+#include <algorithm>
 #include <vector>
 #include <queue>
-#include <functional>
 
 using namespace std;
 
 typedef vector<int> vi;
 typedef pair<int, int> pi;
 
-int N, M;
-vector<pi> A[1001];
-vi visited;
+struct Edge {
+	int start, end, cost;
+	bool operator < (const Edge & __Edge) const {
+		return cost < __Edge.cost;
+	}
+};
 
+vi p;
+int Find(int x) {
+	if (x == p[x]) {
+		return x;
+	}
+	else {
+		return p[x] = Find(p[x]);
+	}
+}
+void Union(int x, int y) {
+	x = Find(x);
+	y = Find(y);
+	p[x] = y;
+}
 int main() {
-
+	int N, M;
 	scanf("%d %d", &N, &M);
-	visited = vi(N + 2);
+
+	p = vi(N + 2);
+	for (int i = 1; i <= N; i++) {
+		p[i] = i;
+	}
+
+	vector<Edge> A(M);
 
 	for (int i = 0; i<M; i++) {
-		int u, v, w;
-		scanf("%d %d %d", &u, &v, &w);
-		A[u].push_back(pi(v, w));
-		A[v].push_back(pi(u, w));
+		scanf("%d %d %d", &A[i].start, &A[i].end, &A[i].cost);
 	}
-
-	priority_queue<pi, vector<pi>, greater<pi>> pq;
-	
-	visited[1] = true;
-	for (int i = 0; i < A[1].size(); ++i) {
-		int next = A[1][i].first;
-		int cost = A[1][i].second;
-		pq.push(pi(cost, next));
-	}
+	sort(A.begin(), A.end());
 
 	int ans = 0;
-	while (!pq.empty()) {
-		pi p = pq.top();
-		int here = p.second;
-		int cost = p.first;
-		pq.pop();
-
-		if (visited[here]) continue;
-		visited[here] = true;
-
-		ans += cost;
-		for (int i = 0; i < A[here].size(); ++i) {
-			int next = A[here][i].first;
-			int next_cost = A[here][i].second;
-			pq.push(pi(next_cost, next));
+	for (int i = 0; i<M; i++) {
+		Edge e = A[i];
+		int x = Find(e.start);
+		int y = Find(e.end);
+		if (x != y) {
+			Union(e.start, e.end);
+			ans += e.cost;
 		}
 	}
 
 	printf("%d\n", ans);
-
 	return 0;
+
 }
