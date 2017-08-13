@@ -41,7 +41,7 @@ int main() {
 		}
 	}
 
-	for (int k = 0; k < N; ++k) {
+	while(!q.empty()){
 		int u = q.front();
 		q.pop();
 		for (int i = 0; i<AdjList[u].size(); i++) {
