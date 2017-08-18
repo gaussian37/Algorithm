@@ -19,7 +19,6 @@ vi A;
 vii W, dp;
 
 int solve(int i, int j) {
-	//if (dp[i][j]) return dp[i][j];
 	if (i == j) return 0;
 	if (dp[i][j] != -1) return dp[i][j];
 
