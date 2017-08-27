@@ -49,7 +49,7 @@ int main() {
 
 			if (dist[v] > dist[u] + w) {
 				dist[v] = dist[u] + w;
-				pq.push(pi(w, v));
+				pq.push(pi(dist[v], v));
 			}
 		}
 	}
