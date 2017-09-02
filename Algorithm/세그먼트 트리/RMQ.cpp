@@ -22,6 +22,15 @@ void init(int node, int start, int end) {
 	}
 }
 
+void update(int node, int start, int end, int i, int new_val) {
+	if (i < start || end < i) return;
+	tree[node] = min(tree[node], new_val);
+	if (start != end) {
+		update(2 * node, start, (start + end) / 2, i, new_val);
+		update(2 * node + 1, (start + end) / 2 + 1, end, i, new_val);
+	}
+}
+
 int query(int node, int start, int end, int i, int j) {
 	if (j < start || end < i) return -1;
 	if (i <= start && end <= j) return tree[node];
