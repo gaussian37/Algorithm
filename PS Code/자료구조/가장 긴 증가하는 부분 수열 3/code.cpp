@@ -34,30 +34,29 @@ void update(vi&tree, int node, int start, int end, int i, int val) {
 }
 
 int main() {
-	int n;
-	scanf("%d", &n);
-	vector<int> a(n);
-	vector<int> b(n);
-	for (int i = 0; i<n; i++) {
-		scanf("%d", &a[i]);
-		b[i] = a[i];
+	int N;
+	scanf("%d", &N);
+	vi A(N), B(N);	
+	for (int i = 0; i<N; i++) {
+		scanf("%d", &A[i]);
+		B[i] = A[i];
 	}
-	sort(b.begin(), b.end());
-	b.erase(unique(b.begin(), b.end()), b.end());
+	sort(B.begin(), B.end());
+	B.erase(unique(B.begin(), B.end()), B.end());
 	map<int, int> d;
-	for (int i = 0; i<b.size(); i++) {
-		d[b[i]] = i + 1;
+	for (int i = 0; i<B.size(); i++) {
+		d[B[i]] = i + 1;
 	}
-	for (int i = 0; i<n; i++) {
-		a[i] = d[a[i]];
+	for (int i = 0; i<N; i++) {
+		A[i] = d[A[i]];
 	}
 
 	int h = (int)ceil(log2(MAX));
 	int tree_size = (1 << (h + 1));
 	vector<int> tree(tree_size);
 	int ans = 0;
-	for (int i = 0; i<n; i++) {
-		int num = a[i];
+	for (int i = 0; i<N; i++) {
+		int num = A[i];
 		int cur = query(tree, 1, 1, MAX, 1, num - 1);
 		if (ans < cur + 1) {
 			ans = cur + 1;
