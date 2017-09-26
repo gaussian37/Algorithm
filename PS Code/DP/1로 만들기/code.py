@@ -1,15 +1,14 @@
-# https://www.acmicpc.net/problem/1463
-n = int(input())
-dp = [int(0) for x in range(n+1)]
+import sys
+sys.setrecursionlimit(999999999)
+read = lambda:sys.stdin.readline().rstrip()
+#sys.stdin = open('input.txt', 'r')
 
-dp[1] = 0
-for i in range(2, n+1):
-    dp[i] = dp[i-1] + 1
-    if (i % 3 == 0 and dp[i] > dp[i//3] + 1):
-        dp[i] = dp[int(i/3)] + 1
-    elif(i % 2 == 0 and dp[i] > dp[i//2] + 1):
-        dp[i] = dp[int(i/2)] + 1
-        
-print(dp[n])      
-        
-        
+N = int(read())
+d = [0] * (N+2)
+
+for i in range(2, N+1):
+    d[i] = d[i-1] + 1
+    d[i] = min(d[i], d[i//2] + 1) if i%2==0 else d[i]
+    d[i] = min(d[i], d[i//3] + 1) if i%3==0 else d[i]
+
+print('%d\n' % d[N])
