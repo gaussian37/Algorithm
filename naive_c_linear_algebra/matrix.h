@@ -35,59 +35,68 @@ typedef struct {
 	Matrix V;
 }SVD;
 
-// ÀÔ·Â ¹ŞÀº ½ºÄ®¶ó °ªÀÇ ¿ª¼ö¸¦ ÃëÇÑ´Ù. (divided by zero Ã³¸®ÇÔ)
+// ì…ë ¥ ë°›ì€ ìŠ¤ì¹¼ë¼ ê°’ì˜ ì—­ìˆ˜ë¥¼ ì·¨í•œë‹¤. (divided by zero ì²˜ë¦¬í•¨)
 double Reciprocal(double a);
 
-// matrix¸¦ º¹»çÇÑ´Ù.
+// matrixë¥¼ ë³µì‚¬í•œë‹¤.
 Matrix CloneMatrix(Matrix mat);
 
-// vector¸¦ º¹»çÇÑ´Ù.
+// vectorë¥¼ ë³µì‚¬í•œë‹¤.
 Vector CloneVector(Vector vec);
 
-// µÎ matrix¸¦ °öÇÑ´Ù.
+// ë‘ matrixë¥¼ ê³±í•œë‹¤.
 Matrix MatrixByMatrix(Matrix mat1, Matrix mat2);
 
-// matrix¿Í vector¸¦ °öÇÑ´Ù.
+// matrixì™€ vectorë¥¼ ê³±í•œë‹¤.
 Vector MatrixByVector(Matrix mat, Vector vec);
 
-// ÀÔ·Â ¹ŞÀº ±æÀÌÀÇ Ç×µîÇà·ÄÀ» ¹İÈ¯ÇÑ´Ù.
+// ì…ë ¥ ë°›ì€ ê¸¸ì´ì˜ í•­ë“±í–‰ë ¬ì„ ë°˜í™˜í•œë‹¤.
 Matrix Identity(int len);
 
-// matrixÀÇ °¢ °ª¿¡ scalar °ªÀ» °öÇÕ´Ï´Ù.
+// matrixì˜ ê° ê°’ì— scalar ê°’ì„ ê³±í•©ë‹ˆë‹¤.
 Matrix ScalarByMatrix(double scalar, Matrix mat);
 
-// vectorÀÇ °¢ °ª¿¡ scalar °ªÀ» °öÇÕ´Ï´Ù.
+// vectorì˜ ê° ê°’ì— scalar ê°’ì„ ê³±í•©ë‹ˆë‹¤.
 Vector ScalarByVector(double scalar, Vector vec);
 
-// matrix¿Í matrix¸¦ ´õÇÕ´Ï´Ù.
+// matrixì™€ matrixë¥¼ ë”í•©ë‹ˆë‹¤.
 Matrix MatrixPlusMatrix(Matrix mat1, Matrix mat2);
 
-// matrix¸¦ transpose ÇÕ´Ï´Ù.
+// matrixì™€ matrixë¥¼ ëºë‹ˆë‹¤.
+Matrix MatrixMinusMatrix(Matrix mat1, Matrix mat2);
+
+// vectorì™€ vectorë¥¼ ë”í•©ë‹ˆë‹¤.
+Vector VectorPlusVector(Vector vec1, Vector vec2);
+
+// vectorì™€ vectorë¥¼ ëºë‹ˆë‹¤.
+Vector VectorMinusVector(Vector vec1, Vector vec2);	
+
+// matrixë¥¼ transpose í•©ë‹ˆë‹¤.
 Matrix Transpose(Matrix mat);
 
-// matrixÀÇ ¸ğµç °ªÀ» ¿ª¼ö¸¦ ÃëÇÕ´Ï´Ù. (divide by zero Á¶Ä¡ÇÔ)
+// matrixì˜ ëª¨ë“  ê°’ì„ ì—­ìˆ˜ë¥¼ ì·¨í•©ë‹ˆë‹¤. (divide by zero ì¡°ì¹˜í•¨)
 Matrix MatrixReciprocal(Matrix mat);
 
-// vectorÀÇ ¸ğµç °ªÀ» ¿ª¼ö¸¦ ÃëÇÕ´Ï´Ù. (divide by zero Á¶Ä¡ÇÔ)
+// vectorì˜ ëª¨ë“  ê°’ì„ ì—­ìˆ˜ë¥¼ ì·¨í•©ë‹ˆë‹¤. (divide by zero ì¡°ì¹˜í•¨)
 Vector VectorReciprocal(Vector vec);
 
-// ¸ğµç °ªÀÌ 0ÀÎ (row, col) Å©±âÀÇ matrix¸¦ ¸¸µì´Ï´Ù.
+// ëª¨ë“  ê°’ì´ 0ì¸ (row, col) í¬ê¸°ì˜ matrixë¥¼ ë§Œë“­ë‹ˆë‹¤.
 Matrix Zeros(int row, int col);
 
-// ¸ğµç °ªÀÌ 1ÀÎ (row, col) Å©±âÀÇ matrix¸¦ ¸¸µì´Ï´Ù.
+// ëª¨ë“  ê°’ì´ 1ì¸ (row, col) í¬ê¸°ì˜ matrixë¥¼ ë§Œë“­ë‹ˆë‹¤.
 Matrix Ones(int row, int col);
 
-// matrixÀÇ eigenvector¿Í eigenvalue¸¦ ±¸ÇÕ´Ï´Ù. Matrix¿¡ eigenvector°¡, Vector¿¡ eigenvalue°¡ ÀúÀåµË´Ï´Ù.
+// matrixì˜ eigenvectorì™€ eigenvalueë¥¼ êµ¬í•©ë‹ˆë‹¤. Matrixì— eigenvectorê°€, Vectorì— eigenvalueê°€ ì €ì¥ë©ë‹ˆë‹¤.
 MatrixVector Eigen(Matrix mat);
 
-// matrix¸¦ U, Sigma, V ¼øÀ¸·Î Æ¯ÀÌ°ª ºĞÇØ ÇÕ´Ï´Ù.
+// matrixë¥¼ U, Sigma, V ìˆœìœ¼ë¡œ íŠ¹ì´ê°’ ë¶„í•´ í•©ë‹ˆë‹¤.
 SVD SingularValueDecomposition(Matrix mat);
 
-// matrixÀÇ ¿ªÇà·ÄÀ» ±¸ÇÕ´Ï´Ù. ¿ªÇà·Ä °ªÀÌ ¾øÀ» ¶§¿¡´Â pseudo inverse·Î ±¸ÇÕ´Ï´Ù.
+// matrixì˜ ì—­í–‰ë ¬ì„ êµ¬í•©ë‹ˆë‹¤. ì—­í–‰ë ¬ ê°’ì´ ì—†ì„ ë•Œì—ëŠ” pseudo inverseë¡œ êµ¬í•©ë‹ˆë‹¤.
 Matrix Inverse(Matrix mat);
 
-// matrix¸¦ Ãâ·ÂÇÕ´Ï´Ù.
+// matrixë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.
 void PrintMatrix(Matrix mat);
 
-// vector¸¦ Ãâ·ÂÇÕ´Ï´Ù.
+// vectorë¥¼ ì¶œë ¥í•©ë‹ˆë‹¤.
 void PrintVector(Vector vec);
