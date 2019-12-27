@@ -320,9 +320,9 @@ MatrixVector Eigen(Matrix mat) {
 	return ret;
 }
 
-SVD SingularValueDecomposition(Matrix mat) {
+Svd SingularValueDecomposition(Matrix mat) {
 
-	SVD ret;
+	Svd ret;
 	MatrixVector U, V;
 	Matrix Sigma, A_At, At_A;;
 
@@ -375,7 +375,7 @@ Matrix Inverse(Matrix mat) {
 
 	double eta = 0.1;
 	double a, b, c, d, e, f, g, h, i, denominator, det;
-	SVD svd;
+	Svd svd;
 	Matrix ret;
 	ret.row = mat.row;
 	ret.col = mat.col;

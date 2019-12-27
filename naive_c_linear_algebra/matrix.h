@@ -33,7 +33,7 @@ typedef struct {
 	Matrix U;
 	Matrix Sigma;
 	Matrix V;
-}SVD;
+}Svd;
 
 // 입력 받은 스칼라 값의 역수를 취한다. (divided by zero 처리함)
 double Reciprocal(double a);
@@ -90,7 +90,7 @@ Matrix Ones(int row, int col);
 MatrixVector Eigen(Matrix mat);
 
 // matrix를 U, Sigma, V 순으로 특이값 분해 합니다.
-SVD SingularValueDecomposition(Matrix mat);
+Svd SingularValueDecomposition(Matrix mat);
 
 // matrix의 역행렬을 구합니다. 역행렬 값이 없을 때에는 pseudo inverse로 구합니다.
 Matrix Inverse(Matrix mat);
