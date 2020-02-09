@@ -1,3 +1,10 @@
+/*
+- ëª¨ë“  ì½”ë“œëŠ” gaussian37ì— ì˜í•˜ì—¬ ì‘ì„±ë˜ì—ˆìŒ.
+  (All codes are written by gaussian37.)
+- ì„ë² ë””ë“œ í™˜ê²½ì—ì„œ ì‚¬ìš©ë  ëª©ì ìœ¼ë¡œ ì‘ì„±ë˜ì–´ ëª¨ë“  ì½”ë“œì— ë™ì  ë©”ëª¨ë¦¬ í• ë‹¹ì€ ì—†ìŠµë‹ˆë‹¤.
+  (All codes have no dynamic memory allocation because those are created for using embedded environment.)
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -57,7 +64,7 @@ Matrix MatrixByMatrix(Matrix mat1, Matrix mat2) {
 	Matrix ret;
 
 	if (mat1.col != mat2.row) {
-		printf("MatrixByMatrix: Ã¹¹øÂ° Çà·ÄÀÇ ¿­°ú µÎ¹øÂ° Çà·ÄÀÇ ÇàÀÇ »çÀÌÁî°¡ ´Ù¸¨´Ï´Ù.");
+		printf("MatrixByMatrix: Ã¹ï¿½ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î¹ï¿½Â° ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ ï¿½Ù¸ï¿½ï¿½Ï´ï¿½.");
 		system("pause");
 		exit(1);
 	}
@@ -83,7 +90,7 @@ Vector MatrixByVector(Matrix mat, Vector vec) {
 	Vector ret;
 
 	if (mat.col != vec.row) {
-		printf("MatrixByVector: Çà·ÄÀÇ ¿­°ú ¿­º¤ÅÍÀÇ ¿­ÀÇ »çÀÌÁî°¡ ´Ù¸¨´Ï´Ù.");
+		printf("MatrixByVector: ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ ï¿½Ù¸ï¿½ï¿½Ï´ï¿½.");
 		system("pause");
 		exit(1);
 	}
@@ -140,7 +147,7 @@ Matrix MatrixPlusMatrix(Matrix mat1, Matrix mat2) {
 	int i, j;
 	Matrix ret;
 	if (mat1.row != mat2.row || mat1.col != mat2.col) {
-		printf("MatrixPlusMatrix: µÎ Çà·ÄÀÇ Çà ¶Ç´Â ¿­ÀÇ Å©±â°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.\n");
+		printf("MatrixPlusMatrix: ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â°¡ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.\n");
 		exit(1);
 	}
 	ret.row = mat1.row;
@@ -159,7 +166,7 @@ Matrix MatrixMinusMatrix(Matrix mat1, Matrix mat2) {
 	int i, j;
 	Matrix ret;
 	if (mat1.row != mat2.row || mat1.col != mat2.col) {
-		printf("MatrixMinusMatrix: µÎ Çà·ÄÀÇ Çà ¶Ç´Â ¿­ÀÇ Å©±â°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.\n");
+		printf("MatrixMinusMatrix: ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ç´ï¿½ ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â°¡ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.\n");
 		exit(1);
 	}
 	ret.row = mat1.row;
@@ -177,7 +184,7 @@ Vector VectorPlusVector(Vector vec1, Vector vec2) {
 	int i;
 	Vector ret;
 	if (vec1.row != vec2.row) {
-		printf("VectorPlusVector: µÎ º¤ÅÍÀÇ Å©±â°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.\n");
+		printf("VectorPlusVector: ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â°¡ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.\n");
 		exit(1);
 	}
 	ret.row = vec1.row;
@@ -191,7 +198,7 @@ Vector VectorMinusVector(Vector vec1, Vector vec2) {
 	int i;
 	Vector ret;
 	if (vec1.row != vec2.row) {
-		printf("VectorMinusVector: µÎ º¤ÅÍÀÇ Å©±â°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.\n");
+		printf("VectorMinusVector: ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å©ï¿½â°¡ ï¿½ï¿½Ä¡ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.\n");
 		exit(1);
 	}
 	ret.row = vec1.row;
@@ -351,13 +358,13 @@ Svd SingularValueDecomposition(Matrix mat) {
 	Sigma.col = c;
 	
 
-	// UÀÇ »çÀÌÁî°¡ ´õ Å« °æ¿ì
+	// Uï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ ï¿½ï¿½ Å« ï¿½ï¿½ï¿½
 	if (flag == 0) {
 		for (i = 0; i < max_r_c; ++i) {
 			Sigma.matrix[i][i] = sqrt(U.Vector.vector[i]);
 		}
 	}
-	// VÀÇ »çÀÌÁî°¡ ´õ Å« °æ¿ì
+	// Vï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½î°¡ ï¿½ï¿½ Å« ï¿½ï¿½ï¿½
 	else {
 		for (i = 0; i < max_r_c; ++i) {
 			Sigma.matrix[i][i] = sqrt(U.Vector.vector[i]);
