@@ -1,4 +1,5 @@
 /*
+- Assume two vectors v1 = (p2-p1) and v2 = (p3-p1) with three input points p1, p2 and p3 and return which direction v2 is in v1 relative to v1.
 - input : p1 = (x1, y1), p2 = (x2, y2), p3 = (x3, y2)
 - output : 1 (counter clockwise), 0 (collinear), -1 (clockwise)
 ※ vector v1 = (p2 - p1), vector v2 = (p3 - p1) 
