@@ -3,7 +3,7 @@
 <br>
 
 - 이 리포지토리에 있는 알고리즘 코드들은 임베디드 환경에서 사용하기 위하여 동적 메모리 할당의 사용을 최소화 하였습니다.
-- All codes in this repository minimized use of dynamic allocation in order to run in embedded environment.
+- All codes in this repository minimize use of dynamic allocation in order to run in embedded environment.
 
 <br>
 
