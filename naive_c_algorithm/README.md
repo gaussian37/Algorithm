@@ -11,6 +11,10 @@
 
 <br>
 
+- [vector](https://github.com/gaussian37/algorithm/tree/master/naive_c_algorithm/data_structure/vector)
+    - 1차원, 2차원의 int형, double형 벡터 구조체 (임베디드 환경을 위해 동적 할당 사용하지 않음)
+    - 1-dimensional, 2-dimensional int or double type vector structure with no dynamic allocation for embedded environment
+
 ## **geometry**
 
 <br>
