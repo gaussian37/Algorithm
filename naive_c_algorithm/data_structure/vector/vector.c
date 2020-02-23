@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include "vector.h"
 
 // 1차원 int형 벡터 구조체 초기화
 // Initialize 1-dimensional int type vector struct
