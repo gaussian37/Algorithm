@@ -1,6 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
+#pragma once
 
 #define MAX_ROW 100
 #define MAX_COL 100
@@ -91,7 +89,7 @@ void VdPrint(VD* vd);
 
 // 2차원 double형 벡터 구조체
 // 2-dimensional double type vector struct
-typedef struct VectorInt2d{
+typedef struct VectorDouble2d{
     // row는 vectors의 사이즈를 관리한다.
     // row manages size of vectors
     int row;

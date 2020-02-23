@@ -1,4 +1,6 @@
-#include <vector.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 // 1차원 int형 벡터 구조체 초기화
 // Initialize 1-dimensional int type vector struct
@@ -43,7 +45,7 @@ void ViPrint(VI* vi){
     int i;
     printf("#col : %d\n", vi->col);
     for(i = 0; i < vi->col; ++i){
-        printf("%d\t", vi->vector[i]);
+        printf("%d ", vi->vector[i]);
     }
     printf("\n");
 }
@@ -101,7 +103,7 @@ void Vi2Print(VI2* vi2){
     for(i = 0; i < vi2->row; ++i){
         printf("#col of %dth vector : %d\n", i, vi2->vectors[i].col);
         for(j = 0; j < vi2->vectors[i].col; ++j){
-            printf("%d\t",vi2->vectors[i].vector[j]);
+            printf("%d ",vi2->vectors[i].vector[j]);
         }
         printf("\n");
     }
@@ -154,7 +156,7 @@ void VdPrint(VD* vd){
     int i;
     printf("#col : %d\n", vd->col);
     for(i = 0; i < vd->col; ++i){
-        printf("%lf\t", vd->vector[i]);
+        printf("%lf ", vd->vector[i]);
     }
     printf("\n");
 }
@@ -209,7 +211,7 @@ void Vd2Print(VD2* vd2){
     for(i = 0; i < vd2->row; ++i){
         printf("#col of %dth vector : %d\n", i, vd2->vectors[i].col);
         for(j = 0; j < vd2->vectors[i].col; ++j){
-            printf("%lf\t",vd2->vectors[i].vector[j]);
+            printf("%lf ",vd2->vectors[i].vector[j]);
         }
         printf("\n");
     }
