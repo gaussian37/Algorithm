@@ -15,6 +15,18 @@
     - 1차원, 2차원의 int형, double형 벡터 구조체 (임베디드 환경을 위해 동적 할당 사용하지 않음)
     - 1-dimensional, 2-dimensional int or double type vector structure with no dynamic allocation for embedded environment
 
+<br>
+
+## **sort**
+
+<br>
+
+- [quick_sort.c](https://github.com/gaussian37/algorithm/blob/master/naive_c_algorithm/sort/quick_sort/quick_sort.c)
+    - 퀵 소트가 평균적으로 매우 효율적인 알고리즘으로 알려져 있고 임베디드 환경에서 추가 배열 생성 및 동적 할당 발생하지 않으므로 적합함.
+    - Quick sort is suitable, especially in the embedded environment, because it is known on average as a very efficient algorithm and does not cause additional array creation and dynamic allocation. 
+
+<br>
+
 ## **geometry**
 
 <br>
