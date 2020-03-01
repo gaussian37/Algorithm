@@ -35,5 +35,14 @@
     - n차원 다각형의 넓이를 구하는 함수 (단, 다각형 내부에서 교차하는 점이나 twist된 부분이 있으면 적용 불가함).
     - This function gets n-dimensional polygon area (Not applicable if there are intersections or twisted parts inside the polygon).
 - [ccw.c](https://github.com/gaussian37/algorithm/blob/master/naive_c_algorithm/geometry/ccw.c)
-    - 세 점 또는 두 벡터의 위치 관계 (반시계 방향, 시계 방향, 동일선상)를 구하는 함수.
-    - Function to find the positional relationship (counter clockwise, clockwise, collinear) of three points or two vectors.
+    - 세 점의 위치 관계를(반시계 방향, 시계 방향, 동일선상)를 구하는 함수.
+    - Function to find the positional relationship (counter clockwise, clockwise, collinear) of three points.
+- [ccw_vector.c](https://github.com/gaussian37/algorithm/blob/master/naive_c_algorithm/geometry/ccw_vector.c)
+    - 두 벡터의 위치 관계를(반시계 방향, 시계 방향, 동일선상)를 구하는 함수.
+    - Function to find the positional relationship (counter clockwise, clockwise, collinear) of two vectors.
+- [line_intersect.c](https://github.com/gaussian37/algorithm/blob/master/naive_c_algorithm/geometry/line_intersect.c)
+    - 두 선분이 교차하는 지 구하는 함수
+    - Function to Find if Two Lines Intersect
+- [polygon_inout.c](https://github.com/gaussian37/algorithm/blob/master/naive_c_algorithm/geometry/polygon_inout.c)
+    - 어떤 점이 다각형의 내부에 있는 지 외부에 있는 지 판단하는 함수
+    - Function to determine which point is inside or outside the polygon
