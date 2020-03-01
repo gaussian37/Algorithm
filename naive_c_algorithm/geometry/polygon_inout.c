@@ -98,7 +98,7 @@ int PolygonInOut(Point p, int num_vertex, Point* vertices){
     // 마지막 꼭지점과 첫번째 꼭지점이 연결되어 있지 않다면 오류를 반환한다.
     // If the last vertex and the first vertex are not connected, an error is returned.
     if (vertices[0].x != vertices[num_vertex].x || vertices[0].y != vertices[num_vertex].y){
-        printf("Last vertex and first vertex are not connected.")
+        printf("Last vertex and first vertex are not connected.");
         return -1;
     }
 
