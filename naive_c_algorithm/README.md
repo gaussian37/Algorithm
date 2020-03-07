@@ -31,18 +31,24 @@
 
 <br>
 
-- [polygon_area.c](https://github.com/gaussian37/algorithm/blob/master/naive_c_algorithm/geometry/polygon_area.c)
-    - n차원 다각형의 넓이를 구하는 함수 (단, 다각형 내부에서 교차하는 점이나 twist된 부분이 있으면 적용 불가함).
-    - This function gets n-dimensional polygon area (Not applicable if there are intersections or twisted parts inside the polygon).
 - [ccw.c](https://github.com/gaussian37/algorithm/blob/master/naive_c_algorithm/geometry/ccw.c)
     - 세 점의 위치 관계를(반시계 방향, 시계 방향, 동일선상)를 구하는 함수.
     - Function to find the positional relationship (counter clockwise, clockwise, collinear) of three points.
+- [ccw_sort.c](https://github.com/gaussian37/Algorithm/blob/master/naive_c_algorithm/geometry/ccw_sort.c)
+    - 점의 좌표들을 저장한 배열을 반시계 방향으로 정렬하는 함수
+    - Function to sort an array containing coordinate of points by counter clockwise .
 - [ccw_vector.c](https://github.com/gaussian37/algorithm/blob/master/naive_c_algorithm/geometry/ccw_vector.c)
     - 두 벡터의 위치 관계를(반시계 방향, 시계 방향, 동일선상)를 구하는 함수.
     - Function to find the positional relationship (counter clockwise, clockwise, collinear) of two vectors.
 - [line_intersect.c](https://github.com/gaussian37/algorithm/blob/master/naive_c_algorithm/geometry/line_intersect.c)
     - 두 선분이 교차하는 지 구하는 함수
     - Function to Find if Two Lines Intersect
+- [polygon_area.c](https://github.com/gaussian37/algorithm/blob/master/naive_c_algorithm/geometry/polygon_area.c)
+    - n차원 다각형의 넓이를 구하는 함수 (단, 다각형 내부에서 교차하는 점이나 twist된 부분이 있으면 적용 불가함).
+    - This function gets n-dimensional polygon area (Not applicable if there are intersections or twisted parts inside the polygon).
 - [polygon_inout.c](https://github.com/gaussian37/algorithm/blob/master/naive_c_algorithm/geometry/polygon_inout.c)
     - 어떤 점이 다각형의 내부에 있는 지 외부에 있는 지 판단하는 함수
     - Function to determine which point is inside or outside the polygon
+- [rectangle_iou.c](https://github.com/gaussian37/Algorithm/blob/master/naive_c_algorithm/geometry/rectangle_iou.c)
+    - 두 직사각형의 (x최소값, y최소값), (x최대값, y최대값) 좌표를 이용하여 IoU를 계산하는 함수
+    - Function to calculate IoU using (min value of x, min value of y), (max valud of x, max valud of y) of two rectangles.
