@@ -1,14 +1,18 @@
-double GetPolygonArea(int* x_points, int* y_points, int num_points) {
-	// https://gaussian37.github.io/math-algorithm-polygon_area/
-	double ret = 0;
-	int i, j;
-	i = num_points - 1;
-	for (j = 0; j < num_points; ++j) {
-		ret += x_points[i] * y_points[j] - x_points[j] * y_points[i];
-		i = j;
-	}
-	ret = ret < 0 ? -ret : ret;
-	ret /= 2;
+typedef struct Point{
+    int x;
+    int y;
+}Point;
 
-	return ret;
+double GetPolygonArea(Point* points, int num_points){
+        double ret = 0;
+        int i, j;
+        i = num_points - 1;
+        for(j = 0; j < num_points; ++j){
+            ret += points[i].x * points[j].y - points[j].x * points[i].y;
+            i = j;
+        }
+        ret = ret < 0 ? -ret : ret;
+        ret /= 2;
+
+        return ret;
 }
