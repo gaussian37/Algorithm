@@ -43,7 +43,7 @@
 - [line_intersect.c](https://github.com/gaussian37/algorithm/blob/master/naive_c_algorithm/geometry/line_intersect.c)
     - 두 선분이 교차하는 지 구하는 함수
     - Function to Find if Two Lines Intersect
-- [intersection_point.c]()
+- [intersection_point.c](https://github.com/gaussian37/Algorithm/blob/master/naive_c_algorithm/geometry/intersection_point.c)
     - 두 선분의 교차점을 구하는 함수
     - Function to get intersection point of two lines.
 - [polygon_area.c](https://github.com/gaussian37/algorithm/blob/master/naive_c_algorithm/geometry/polygon_area.c)
