@@ -55,3 +55,6 @@
 - [rectangle_iou.c](https://github.com/gaussian37/Algorithm/blob/master/naive_c_algorithm/geometry/rectangle_iou.c)
     - 두 직사각형의 (x최소값, y최소값), (x최대값, y최대값) 좌표를 이용하여 IoU를 계산하는 함수
     - Function to calculate IoU using (min value of x, min value of y), (max valud of x, max valud of y) of two rectangles.
+- [polygon_iou.c](https://github.com/gaussian37/Algorithm/blob/master/naive_c_algorithm/geometry/polygon_iou.c)
+    - 두 볼록 다각형의 좌표를 이용하여 IoU를 계산하는 함수
+    - Function to calculate IoU of two polygons with coordinates.
