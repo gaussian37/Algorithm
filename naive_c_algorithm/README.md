@@ -58,3 +58,6 @@
 - [polygon_iou.c](https://github.com/gaussian37/Algorithm/blob/master/naive_c_algorithm/geometry/polygon_iou.c)
     - 두 볼록 다각형의 좌표를 이용하여 IoU를 계산하는 함수
     - Function to calculate IoU of two polygons with coordinates.
+- [rotate_coordinate.c](https://github.com/gaussian37/Algorithm/blob/master/naive_c_algorithm/geometry/rotate_coordinate.c)
+    - 점 p를 점 base 기준으로 theta 만큼 회전하는 함수
+    - Function to rotate point p by theta relative to point base.
