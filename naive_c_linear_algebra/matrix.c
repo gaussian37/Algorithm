@@ -8,15 +8,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <assert.h>
 #include "matrix.h"
 
 double Reciprocal(double a) {
-	double ret, temp;
-	temp = a;
-	if (temp < 0) {
-		temp = -temp;
-	}
-	if (temp < EPS) {
+	double ret;
+
+	if ( -EPS < a && a < EPS) {
 		ret = 0.0;
 	}
 	else {
@@ -25,27 +23,27 @@ double Reciprocal(double a) {
 	return ret;
 }
 
-Matrix CloneMatrix(Matrix mat) {
+Matrix CloneMatrix(const Matrix* mat) {
 	int i, j;
 	Matrix ret;
-	ret.row = mat.row;
-	ret.col = mat.col;
+	ret.row = mat->row;
+	ret.col = mat->col;
 
-	for (i = 0; i < mat.row; ++i) {
-		for (j = 0; j < mat.col; ++j) {
-			ret.matrix[i][j] = mat.matrix[i][j];
+	for (i = 0; i < mat->row; ++i) {
+		for (j = 0; j < mat->col; ++j) {
+			ret.matrix[i][j] = mat->matrix[i][j];
 		}
 	}
 	return ret;
 }
 
-Vector CloneVector(Vector vec) {
+Vector CloneVector(const Vector* vec) {
 	int i;
 	Vector ret;
-	ret.row = vec.row;
+	ret.row = vec->row;
 
-	for (i = 0; i < vec.row; ++i) {
-		ret.vector[i] = vec.vector[i];
+	for (i = 0; i < vec->row; ++i) {
+		ret.vector[i] = vec->vector[i];
 	}
 	return vec;
 }
@@ -58,25 +56,21 @@ void PrintVectorShape(Vector vec) {
 	printf("(%d,)\n", vec.row);
 }
 
-Matrix MatrixByMatrix(Matrix mat1, Matrix mat2) {
+Matrix MatrixByMatrix(const Matrix* mat1, const Matrix* mat2) {
 
 	int i, j, k;
 	Matrix ret;
 
-	if (mat1.col != mat2.row) {
-		printf("MatrixByMatrix: ù��° ����� ���� �ι�° ����� ���� ����� �ٸ��ϴ�.");
-		system("pause");
-		exit(1);
-	}
+	assert(mat1.col != mat2.row);
 
-	ret.row = mat1.row;
-	ret.col = mat2.col;
+	ret.row = mat1->row;
+	ret.col = mat2->col;
 
-	for (i = 0; i < mat1.row; ++i) {
-		for (j = 0; j < mat2.col; ++j) {
+	for (i = 0; i < mat1->row; ++i) {
+		for (j = 0; j < mat2->col; ++j) {
 			ret.matrix[i][j] = 0;
-			for (k = 0; k < mat1.col; ++k) {
-				ret.matrix[i][j] += mat1.matrix[i][k] * mat2.matrix[k][j];
+			for (k = 0; k < mat1->col; ++k) {
+				ret.matrix[i][j] += mat1->matrix[i][k] * mat2->matrix[k][j];
 			}
 		}
 	}
@@ -85,21 +79,17 @@ Matrix MatrixByMatrix(Matrix mat1, Matrix mat2) {
 
 }
 
-Vector MatrixByVector(Matrix mat, Vector vec) {
+Vector MatrixByVector(const Matrix* mat, const Vector* vec) {
 	int i, j;
 	Vector ret;
 
-	if (mat.col != vec.row) {
-		printf("MatrixByVector: ����� ���� �������� ���� ����� �ٸ��ϴ�.");
-		system("pause");
-		exit(1);
-	}
+	assert(mat->col != vec->row);
 
-	ret.row = mat.row;
-	for (i = 0; i < mat.row; ++i) {
+	ret.row = mat->row;
+	for (i = 0; i < mat->row; ++i) {
 		ret.vector[i] = 0;
-		for (j = 0; j < mat.col; ++j) {
-			ret.vector[i] += mat.matrix[i][j] * vec.vector[j];
+		for (j = 0; j < mat->col; ++j) {
+			ret.vector[i] += mat->matrix[i][j] * vec->vector[j];
 		}
 	}
 
@@ -120,104 +110,96 @@ Matrix Identity(int len) {
 	return ret;
 }
 
-Matrix ScalarByMatrix(double scalar, Matrix mat) {
+Matrix ScalarByMatrix(double scalar, const Matrix* mat) {
 	int i, j;
 	Matrix ret;
-	ret.row = mat.row;
-	ret.col = mat.col;
-	for (i = 0; i < mat.row; ++i) {
-		for (j = 0; j < mat.col; ++j) {
-			ret.matrix[i][j] = scalar * mat.matrix[i][j];
+	ret.row = mat->row;
+	ret.col = mat->col;
+	for (i = 0; i < mat->row; ++i) {
+		for (j = 0; j < mat->col; ++j) {
+			ret.matrix[i][j] = scalar * mat->matrix[i][j];
 		}
 	}
 	return ret;
 }
 
-Vector ScalarByVector(double scalar, Vector vec) {
+Vector ScalarByVector(double scalar, const Vector* vec) {
 	int i;
 	Vector ret;
-	ret.row = vec.row;
-	for (i = 0; i < vec.row; ++i) {
-		ret.vector[i] = scalar * vec.vector[i];
+	ret.row = vec->row;
+	for (i = 0; i < vec->row; ++i) {
+		ret.vector[i] = scalar * vec->vector[i];
 	}
 	return ret;
 }
 
-Matrix MatrixPlusMatrix(Matrix mat1, Matrix mat2) {
+Matrix MatrixPlusMatrix(const Matrix* mat1, const Matrix* mat2) {
 	int i, j;
 	Matrix ret;
-	if (mat1.row != mat2.row || mat1.col != mat2.col) {
-		printf("MatrixPlusMatrix: �� ����� �� �Ǵ� ���� ũ�Ⱑ ��ġ���� �ʽ��ϴ�.\n");
-		exit(1);
-	}
-	ret.row = mat1.row;
-	ret.col = mat1.col;
+	assert((mat1->row != mat2->row) || (mat1->col != mat2->col));
 
-	for (i = 0; i < mat1.row; ++i) {
-		for (j = 0; j < mat1.col; ++j) {
-			ret.matrix[i][j] = mat1.matrix[i][j] + mat2.matrix[i][j];
+	ret.row = mat1->row;
+	ret.col = mat1->col;
+
+	for (i = 0; i < mat1->row; ++i) {
+		for (j = 0; j < mat1->col; ++j) {
+			ret.matrix[i][j] = mat1->matrix[i][j] + mat2->matrix[i][j];
 		}
 	}
 	return ret;
 }
 
 
-Matrix MatrixMinusMatrix(Matrix mat1, Matrix mat2) {
+Matrix MatrixMinusMatrix(const Matrix* mat1, const Matrix* mat2) {
 	int i, j;
 	Matrix ret;
-	if (mat1.row != mat2.row || mat1.col != mat2.col) {
-		printf("MatrixMinusMatrix: �� ����� �� �Ǵ� ���� ũ�Ⱑ ��ġ���� �ʽ��ϴ�.\n");
-		exit(1);
-	}
-	ret.row = mat1.row;
-	ret.col = mat1.col;
+	assert((mat1->row != mat2->row) || (mat1->col != mat2->col));
 
-	for (i = 0; i < mat1.row; ++i) {
-		for (j = 0; j < mat1.col; ++j) {
-			ret.matrix[i][j] = mat1.matrix[i][j] - mat2.matrix[i][j];
+	ret.row = mat1->row;
+	ret.col = mat1->col;
+
+	for (i = 0; i < mat1->row; ++i) {
+		for (j = 0; j < mat1->col; ++j) {
+			ret.matrix[i][j] = mat1->matrix[i][j] - mat2->matrix[i][j];
 		}
 	}
 	return ret;
 }
 
-Vector VectorPlusVector(Vector vec1, Vector vec2) {
+Vector VectorPlusVector(const Vector* vec1, const Vector* vec2) {
 	int i;
 	Vector ret;
-	if (vec1.row != vec2.row) {
-		printf("VectorPlusVector: �� ������ ũ�Ⱑ ��ġ���� �ʽ��ϴ�.\n");
-		exit(1);
-	}
-	ret.row = vec1.row;
-	for (i = 0; i < vec1.row; ++i) {
-		ret.vector[i] = vec1.vector[i] + vec2.vector[i];
+	assert(vec1->row != vec2->row);
+
+	ret.row = vec1->row;
+	for (i = 0; i < vec1->row; ++i) {
+		ret.vector[i] = vec1->vector[i] + vec2->vector[i];
 	}
 	return ret;
 }
 
-Vector VectorMinusVector(Vector vec1, Vector vec2) {
+Vector VectorMinusVector(const Vector* vec1, const Vector* vec2) {
 	int i;
 	Vector ret;
-	if (vec1.row != vec2.row) {
-		printf("VectorMinusVector: �� ������ ũ�Ⱑ ��ġ���� �ʽ��ϴ�.\n");
-		exit(1);
-	}
-	ret.row = vec1.row;
-	for (i = 0; i < vec1.row; ++i) {
-		ret.vector[i] = vec1.vector[i] - vec2.vector[i];
+	assert(vec1->row != vec2->row);
+
+	ret.row = vec1->row;
+	for (i = 0; i < vec1->row; ++i) {
+		ret.vector[i] = vec1->vector[i] - vec2->vector[i];
 	}
 	return ret;
 }
 
-Matrix Transpose(Matrix mat) {
+Matrix Transpose(const Matrix* mat) {
 
 	int i, j;
 	Matrix ret;
-	ret.row = mat.col;
-	ret.col = mat.row;
+	ret.row = mat->col;
+	ret.col = mat->row;
 
 	for (i = 0; i < ret.row; ++i) {
 		for (j = 0; j < ret.col; ++j) {
-			ret.matrix[i][j] = mat.matrix[j][i];
+			ret.matrix[i][j] = mat->matrix[j][i];
 		}
 	}
 
@@ -225,17 +207,17 @@ Matrix Transpose(Matrix mat) {
 
 }
 
-Matrix MatrixReciprocal(Matrix mat) {
+Matrix MatrixReciprocal(const Matrix* mat) {
 
 	int i, j;
 	Matrix ret;
-	ret.row = mat.row;
-	ret.col = mat.col;
+	ret.row = mat->row;
+	ret.col = mat->col;
 	
 	memset(ret.matrix, 0, sizeof(ret.matrix));	
-	for (i = 0; i < mat.row; ++i) {
-		for (j = 0; j < mat.col; ++j) {
-			ret.matrix[i][j] = Reciprocal(mat.matrix[i][j]);
+	for (i = 0; i < mat->row; ++i) {
+		for (j = 0; j < mat->col; ++j) {
+			ret.matrix[i][j] = Reciprocal(mat->matrix[i][j]);
 		}
 	}
 	return ret;
@@ -273,7 +255,7 @@ Matrix Ones(int row, int col) {
 	return ret;
 }
 
-MatrixVector Eigen(Matrix mat) {
+MatrixVector Eigen(const Matrix* mat) {
 
 	MatrixVector ret;
 	double a, b, c, d;
@@ -281,11 +263,11 @@ MatrixVector Eigen(Matrix mat) {
 	double eigen_value[MAX_ROW];
 
 	memset(eigen_value, 0, sizeof(eigen_value));
-	if (mat.row == 2 && mat.col == 2) {
+	if (mat->row == 2 && mat->col == 2) {
 		// https://gaussian37.github.io/math-la-2_by_2_eigen/
 		
-		a = mat.matrix[0][0]; b = mat.matrix[0][1];
-		c = mat.matrix[1][0]; d = mat.matrix[1][1];
+		a = mat->matrix[0][0]; b = mat->matrix[0][1];
+		c = mat->matrix[1][0]; d = mat->matrix[1][1];
 
 		T = a + d;
 		D = a * d - b * c;
@@ -327,7 +309,7 @@ MatrixVector Eigen(Matrix mat) {
 	return ret;
 }
 
-Svd SingularValueDecomposition(Matrix mat) {
+Svd SingularValueDecomposition(const Matrix* mat) {
 
 	Svd ret;
 	MatrixVector U, V;
@@ -336,13 +318,13 @@ Svd SingularValueDecomposition(Matrix mat) {
 	int i;
 	int max_r_c, flag, r, c;
 
-	r = mat.row;
-	c = mat.col;
-	A_At = MatrixByMatrix(mat, Transpose(mat));
-	At_A = MatrixByMatrix(Transpose(mat), mat);
+	r = mat->row;
+	c = mat->col;
+	A_At = MatrixByMatrix(&mat, Transpose(&mat));
+	At_A = MatrixByMatrix(Transpose(&mat), &mat);
 
-	U = Eigen(A_At);
-	V = Eigen(At_A);
+	U = Eigen(&A_At);
+	V = Eigen(&At_A);
 
 	if (r >= c) {
 		max_r_c = r;
@@ -378,7 +360,7 @@ Svd SingularValueDecomposition(Matrix mat) {
 	return ret;
 }
 
-Matrix Inverse(Matrix mat) {
+Matrix Inverse(const Matrix* mat) {
 
 	double eta = 0.1;
 	double a, b, c, d, e, f, g, h, i, denominator, det;
@@ -392,15 +374,18 @@ Matrix Inverse(Matrix mat) {
 		exit(1);
 	}
 	else if (mat.row == 1 && mat.col == 1) {
-		ret = CloneMatrix(mat);
+		ret = CloneMatrix(&mat);
 	}
 	else if (mat.row == 2 && mat.col == 2) {
 		a = mat.matrix[0][0]; b = mat.matrix[0][1];
 		c = mat.matrix[1][0]; d = mat.matrix[1][1];
 		det = a * d - b * c;
 		if (det < 0.1) {
-			svd = SingularValueDecomposition(mat);
-			ret = MatrixByMatrix(MatrixByMatrix(svd.V, MatrixReciprocal(svd.Sigma)), Transpose(svd.U));
+			svd = SingularValueDecomposition(&mat);
+			matrix_reciprocal = MatrixReciprocal(&svd.Sigma);
+			matrix_by_matrix1 = MatrixByMatrix(&svd.V, &matrix_reciprocal);
+			transpose = Transpose(&svd.U);
+			ret = MatrixByMatrix(&matrix_by_matrix1, &transpose);
 		}
 		else {
 			denominator = 1 / det;
@@ -424,7 +409,7 @@ Matrix Inverse(Matrix mat) {
 		ret.matrix[2][0] = d * h - e * g;
 		ret.matrix[2][1] = -(a * h - b * g);
 		ret.matrix[2][2] = a * e - b * d;
-		ret = ScalarByMatrix(denominator, ret);
+		ret = ScalarByMatrix(denominator, &ret);
 	}
 	else {
 
@@ -433,19 +418,19 @@ Matrix Inverse(Matrix mat) {
 }
 
 
-void PrintMatrix(Matrix mat) {
+void PrintMatrix(const Matrix* mat) {
 	int i, j;
-	for (i = 0; i < mat.row; ++i) {
-		for (j = 0; j < mat.col; ++j) {
-			printf("%f\t", mat.matrix[i][j]);
+	for (i = 0; i < mat->row; ++i) {
+		for (j = 0; j < mat->col; ++j) {
+			printf("%f\t", mat->matrix[i][j]);
 		}
 		printf("\n");
 	}
 }
 
-void PrintVector(Vector vec) {
+void PrintVector(const Vector* vec) {
 	int i;
-	for (i = 0; i < vec.row; ++i) {
-		printf("%f\n", vec.vector[i]);
+	for (i = 0; i < vec->row; ++i) {
+		printf("%f\n", vec->vector[i]);
 	}
 }

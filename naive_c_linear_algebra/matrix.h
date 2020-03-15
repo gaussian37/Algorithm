@@ -14,7 +14,7 @@
 #define EPS 0.000000001
 
 // 2차원 Matrix (2-dimensional Matrix)
-typedef struct {
+typedef struct _Matrix{
 
 	double matrix[MAX_ROW][MAX_COL];
 	int row;
@@ -23,7 +23,7 @@ typedef struct {
 }Matrix;
 
 // 열 벡터 (Column Vector)
-typedef struct {
+typedef struct _Vector{
 
 	double vector[MAX_ROW];
 	int row;
@@ -31,7 +31,7 @@ typedef struct {
 }Vector;
 
 // Matrix와 Vector 한 쌍 (One pair of Matrix and Vector)
-typedef struct {
+typedef struct _MatrixVector{
 
 	Matrix Matrix;
 	Vector Vector;
@@ -39,7 +39,7 @@ typedef struct {
 }MatrixVector;
 
 // 특이값 분해 (Singular Value Decomposition)
-typedef struct {
+typedef struct _Svd{
 	Matrix U;
 	Matrix Sigma;
 	Matrix V;
@@ -51,19 +51,19 @@ double Reciprocal(double a);
 
 // matrix를 복사한다.
 // copy the matrix
-Matrix CloneMatrix(Matrix mat);
+Matrix CloneMatrix(const Matrix* mat);
 
 // vector를 복사한다.
 // copy the vector
-Vector CloneVector(Vector vec);
+Vector CloneVector(const Vector* vec);
 
 // 두 matrix를 곱한다.
 // multiply two matrices
-Matrix MatrixByMatrix(Matrix mat1, Matrix mat2);
+Matrix MatrixByMatrix(const Matrix* mat1, const Matrix* mat2);
 
 // matrix와 vector를 곱한다.
 // multiply matrix by vector
-Vector MatrixByVector(Matrix mat, Vector vec);
+Vector MatrixByVector(const Matrix* mat, const Vector* vec);
 
 // 입력 받은 길이의 항등행렬을 반환한다.
 // Return the identity matrix of the input length.
@@ -71,35 +71,35 @@ Matrix Identity(int len);
 
 // matrix의 각 값에 scalar 값을 곱합니다.
 // Multiply each value in the matrix by the scalar value.
-Matrix ScalarByMatrix(double scalar, Matrix mat);
+Matrix ScalarByMatrix(double scalar, const Matrix* mat);
 
 // vector의 각 값에 scalar 값을 곱합니다.
 // Multiply each value in the vector by the scalar value.
-Vector ScalarByVector(double scalar, Vector vec);
+Vector ScalarByVector(double scalar, const Vector* vec);
 
 // matrix와 matrix를 더합니다.
 // add matrix and matrix
-Matrix MatrixPlusMatrix(Matrix mat1, Matrix mat2);
+Matrix MatrixPlusMatrix(const Matrix* mat1, const Matrix* mat2);
 
 // matrix와 matrix를 뺍니다.
 // subtract matrix and matrix.
-Matrix MatrixMinusMatrix(Matrix mat1, Matrix mat2);
+Matrix MatrixMinusMatrix(const Matrix* mat1, const Matrix* mat2);
 
 // vector와 vector를 더합니다.
 // add vector and vector
-Vector VectorPlusVector(Vector vec1, Vector vec2);
+Vector VectorPlusVector(const Vector* vec1, const Vector* vec2);
 
 // vector와 vector를 뺍니다.
 // subtract vector and vector
-Vector VectorMinusVector(Vector vec1, Vector vec2);	
+Vector VectorMinusVector(const Vector* vec1, const Vector* vec2);
 
 // matrix를 transpose 합니다.
 // transpose the matrix
-Matrix Transpose(Matrix mat);
+Matrix Transpose(const Matrix* mat);
 
 // matrix의 모든 값을 역수를 취합니다. (divide by zero 조치함)
 // Take the inverse of all values in the matrix. (take action by divide by zero)
-Matrix MatrixReciprocal(Matrix mat);
+Matrix MatrixReciprocal(const Matrix* mat);
 
 // vector의 모든 값을 역수를 취합니다. (divide by zero 조치함)
 // Take the inverse of all values of vector. (take action by divide by zero)
@@ -115,20 +115,20 @@ Matrix Ones(int row, int col);
 
 // matrix의 eigenvector와 eigenvalue를 구합니다. Matrix에 eigenvector가, Vector에 eigenvalue가 저장됩니다.
 // find the eigenvector and eigenvalue of the matrix. The eigenvector is stored in the Matrix and the eigenvalue is stored in the Vector.
-MatrixVector Eigen(Matrix mat);
+MatrixVector Eigen(const Matrix* mat);
 
 // matrix를 U, Sigma, V 순으로 특이값 분해 합니다.
 // Solve the singular values of the matrix in the order U, Sigma, and V.
-Svd SingularValueDecomposition(Matrix mat);
+Svd SingularValueDecomposition(const Matrix* mat);
 
 // matrix의 역행렬을 구합니다. 역행렬 값이 없을 때에는 pseudo inverse로 구합니다.
 // Find the inverse of matrix. If there is no inverse, the pseudo inverse is obtained.
-Matrix Inverse(Matrix mat);
+Matrix Inverse(const Matrix* mat);
 
 // matrix를 출력합니다.
 // print the matrix.
-void PrintMatrix(Matrix mat);
+void PrintMatrix(const Matrix* mat);
 
 // vector를 출력합니다.
 // print the vector
-void PrintVector(Vector vec);
+void PrintVector(const Vector* vec);
