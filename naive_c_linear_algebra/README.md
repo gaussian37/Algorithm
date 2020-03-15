@@ -8,22 +8,22 @@
 <br>
 
 - matrix를 복사한다.
-- `Matrix CloneMatrix(Matrix mat);`
+- `Matrix CloneMatrix(const Matrix* mat);`
 
  <br> 
 
 - vector를 복사한다.
-- `Vector CloneVector(Vector vec);`
+- `Vector CloneVector(const Vector* vec);`
 
  <br> 
 
 - 두 matrix를 곱한다.
-- `Matrix MatrixByMatrix(Matrix mat1, Matrix mat2);`
+- `Matrix MatrixByMatrix(const Matrix* mat1, const Matrix* mat2);`
 
  <br> 
 
 - matrix와 vector를 곱한다.
-- `Vector MatrixByVector(Matrix mat, Vector vec);`
+- `Vector MatrixByVector(const Matrix* mat, const Vector* vec);`
 
  <br> 
 
@@ -33,32 +33,32 @@
  <br> 
 
 - matrix의 각 값에 scalar 값을 곱합니다.
-- `Matrix ScalarByMatrix(double scalar, Matrix mat);`
+- `Matrix ScalarByMatrix(double scalar, const Matrix* mat);`
 
  <br> 
 
 - vector의 각 값에 scalar 값을 곱합니다.
-- `Vector ScalarByVector(double scalar, Vector vec);`
+- `Vector ScalarByVector(double scalar, const Vector* vec);`
 
  <br> 
 
 - matrix와 matrix를 더합니다.
-- `Matrix MatrixPlusMatrix(Matrix mat1, Matrix mat2);`
+- `Matrix MatrixPlusMatrix(const Matrix* mat1, const Matrix* mat2);`
 
  <br> 
 
 - matrix를 transpose 합니다.
-- `Matrix Transpose(Matrix mat);`
+- `Matrix Transpose(const Matrix* mat);`
 
  <br> 
 
 - matrix의 모든 값을 역수를 취합니다. (divide by zero 조치함)
-- `Matrix MatrixReciprocal(Matrix mat);`
+- `Matrix MatrixReciprocal(const Matrix* mat);`
 
  <br> 
 
 - vector의 모든 값을 역수를 취합니다. (divide by zero 조치함)
-- `Vector VectorReciprocal(Vector vec);`
+- `Vector VectorReciprocal(const Vector* vec);`
 
  <br> 
 
@@ -73,24 +73,24 @@
  <br> 
 
 - matrix의 eigenvector와 eigenvalue를 구합니다. Matrix에 eigenvector가, Vector에 eigenvalue가 저장됩니다.
-- `MatrixVector Eigen(Matrix mat);`
+- `MatrixVector Eigen(const Matrix* mat);`
 
  <br> 
 
 - matrix를 U, Sigma, V 순으로 특이값 분해 합니다.
-- `Svd SingularValueDecomposition(Matrix mat);`
+- `Svd SingularValueDecomposition(const Matrix* mat);`
 
  <br> 
 
 - matrix의 역행렬을 구합니다. 역행렬 값이 없을 때에는 pseudo inverse로 구합니다.
-- `Matrix Inverse(Matrix mat);`
+- `Matrix Inverse(const Matrix* mat);`
 
  <br> 
 
 - matrix를 출력합니다.
-- `void PrintMatrix(Matrix mat);`
+- `void PrintMatrix(const Matrix* mat);`
 
  <br> 
 
 - vector를 출력합니다.
-- `void PrintVector(Vector vec);`
+- `void PrintVector(const Vector* vec);`
