@@ -1,8 +1,24 @@
 /*
-- 모든 코드는 gaussian37에 의하여 작성되었음.
-  (All codes are written by gaussian37.)
-- 임베디드 환경에서 사용될 목적으로 작성되어 모든 코드에 동적 메모리 할당은 없습니다.
-  (All codes have no dynamic memory allocation because those are created for using embedded environment.)
+- All codes are written by gaussian37.
+- Compile environment : C99
+- All comments MUST be written English.
+- All code follows the rules.
+
+1. Notation
+	1.1. All functions follow Pascal notation. (e.g. CloneMatrix (o), cloneMatrix(x), clone_matrix(x))
+	1.2. All variables follow snake notation. (e.g. result_matrix (o), resultMatrix(x), ResultMatrix(x))
+
+2. Function 
+	2.1. Function inputs and outputs are taken as arguments. It must be delivered in the order of input and output.
+	2.2. When input is passed to a function, the primitive type must be passed by value and the structure by pointer.
+	2.3. The input of the function takes as const type.
+	2.4. The result is stored directly in the output passed to the pointer.
+	2.5. It indicates the function operation status through the return value, 
+	     and if the return value is 0, it is determined that it is operated normally.
+
+3. Etc
+	3.1. All codes have minimum dynamic memory allocation because those are created for using embedded environment.
+
 */
 
 #include <stdio.h>
@@ -11,49 +27,33 @@
 #include <assert.h>
 #include "matrix.h"
 
-double Reciprocal(double a) {
-	double ret;
 
-	if ( -EPS < a && a < EPS) {
-		ret = 0.0;
-	}
-	else {
-		ret = 1 / a;
-	}
-	return ret;
-}
+void CloneMatrix(const Matrix *input, Matrix *output) {
+	
+	output->row = input->row;
+	output->col = input->col;
 
-Matrix CloneMatrix(const Matrix* mat) {
-	int i, j;
-	Matrix ret;
-	ret.row = mat->row;
-	ret.col = mat->col;
-
-	for (i = 0; i < mat->row; ++i) {
-		for (j = 0; j < mat->col; ++j) {
-			ret.matrix[i][j] = mat->matrix[i][j];
+	for (int i = 0; i < input->row; ++i) {
+		for (int j = 0; j < input->col; ++j) {
+			output->matrix[i][j] = input->matrix[i][j];
 		}
 	}
-	return ret;
 }
 
-Vector CloneVector(const Vector* vec) {
-	int i;
-	Vector ret;
-	ret.row = vec->row;
-
-	for (i = 0; i < vec->row; ++i) {
-		ret.vector[i] = vec->vector[i];
+void CloneVector(const Vector *input, Vector *output) {
+	output->row = input->row;
+	
+	for (int i = 0; i < input->row; ++i) {
+		output->vector[i] = input->vector[i];
 	}
-	return vec;
 }
 
-void PrintMatrixShape(Matrix mat) {
-	printf("(%d, %d)\n", mat.row, mat.col);
+void PrintMatrixShape(const Matrix *input) {
+	printf("(%d, %d)\n", input->row, input->col);
 }
 
-void PrintVectorShape(Vector vec) {
-	printf("(%d,)\n", vec.row);
+void PrintVectorShape(const Vector *input) {
+	printf("(%d,)\n", input->row);
 }
 
 Matrix MatrixByMatrix(const Matrix* mat1, const Matrix* mat2) {
@@ -205,6 +205,19 @@ Matrix Transpose(const Matrix* mat) {
 
 	return ret;
 
+}
+
+double Reciprocal(const double input, double *output) {
+	int ret = 0;
+
+	if ( -EPS < input && input < EPS) {
+		*output = 0.0;
+		ret = 1;
+	}
+	else {
+		*output = 1 / input;
+	}
+	return ret;
 }
 
 Matrix MatrixReciprocal(const Matrix* mat) {

@@ -1,17 +1,18 @@
 /*
 - 모든 코드는 gaussian37에 의하여 작성되었음.
   (All codes are written by gaussian37.)
-- 임베디드 환경에서 사용될 목적으로 작성되어 모든 코드에 동적 메모리 할당은 없습니다.
-  (All codes have no dynamic memory allocation because those are created for using embedded environment.)
+- 임베디드 환경에서 사용될 목적으로 작성되어 모든 코드에 동적 메모리 할당은 최소화 하였음.
+  (All codes have minimum dynamic memory allocation because those are created for using embedded environment.)
 */
 
-#pragma once
+#ifndef __MATRIX_H__
+#define __MATRIX_H__
 
 #include <math.h>
 
-#define MAX_ROW 5
-#define MAX_COL 5
-#define EPS 0.000000001
+#define MAX_ROW			(5)
+#define MAX_COL			(5)
+#define EPS				(0.000000001)
 
 // 2차원 Matrix (2-dimensional Matrix)
 typedef struct _Matrix{
@@ -51,11 +52,11 @@ double Reciprocal(double a);
 
 // matrix를 복사한다.
 // copy the matrix
-Matrix CloneMatrix(const Matrix* mat);
+void CloneMatrix(const Matrix* input, Matrix* output);
 
 // vector를 복사한다.
 // copy the vector
-Vector CloneVector(const Vector* vec);
+void CloneVector(const Vector *input, Vector *output);
 
 // 두 matrix를 곱한다.
 // multiply two matrices
@@ -132,3 +133,11 @@ void PrintMatrix(const Matrix* mat);
 // vector를 출력합니다.
 // print the vector
 void PrintVector(const Vector* vec);
+
+// print matrix shape.
+void PrintMatrixShape(const Matrix *input);
+
+// print vector shape.
+void PrintVectorShape(const Vector *input);
+
+#endif
