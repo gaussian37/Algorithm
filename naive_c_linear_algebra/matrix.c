@@ -7,6 +7,11 @@
 1. Notation
 	1.1. All functions follow Pascal notation. (e.g. CloneMatrix (o), cloneMatrix(x), clone_matrix(x))
 	1.2. All variables follow snake notation. (e.g. result_matrix (o), resultMatrix(x), ResultMatrix(x))
+	1.3. Matrix and vector can be used as input, output and inplace. Each case must follow rules below. '_id' can be omitted.
+	     (① input : only read, ② output : only write, ③ inplace : input + output)
+	    1.3.1. input : src_datatype_id (e.g. src_matrix, src_matrix_1, src_matrix_something, ...)
+		1.3.2. output : target_datatype_id (e.g. target_matrix, target_matrix_1, target_matrix_something, ...)
+		1.3.3. inplace : inplace_datatype_id (e.g. inplace_matrix, inplace_matrix_1, inplace_matrix_somting, ...)	       
 
 2. Function 
 	2.1. Function inputs and outputs are taken as arguments. It must be delivered in the order of input and output.
